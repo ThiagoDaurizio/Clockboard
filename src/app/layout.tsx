@@ -1,7 +1,8 @@
+import Menubar from '@/components/Menubar/infex'
 import './globals.css'
 import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { GlobalContextProvider } from '@/context/global'
+import Loading from '@/components/Loading/loading'
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,8 +15,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html>
+      <GlobalContextProvider>
+        <body className="bg-gray-800 relative">
+          <Loading/>
+          <Menubar/>
+          {children}
+        </body>
+      </GlobalContextProvider>
     </html>
   )
 }
