@@ -58,7 +58,7 @@ const Menubar = () => {
           <Link href={'https://open.spotify.com/'} target='_blank' className=" transition-all duration-500 hover:text-green-500 transform hover:-translate-y-1 border border-transparent hover:border-b-violet-500 hover:pb-1">
             <IconsMenu.spotify/>
           </Link>
-          <Link href={'/'} target='_blank' className=" transition-all duration-300 hover:text-green-500 transform hover:-translate-y-1 border border-transparent hover:border-b-violet-500 hover:pb-1">
+          <Link href={'/'} className=" transition-all duration-300 hover:text-green-500 transform hover:-translate-y-1 border border-transparent hover:border-b-violet-500 hover:pb-1">
             <IconsMenu.settings/>
           </Link>
         </div>
