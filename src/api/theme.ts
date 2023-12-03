@@ -1,11 +1,25 @@
 import { database } from "@/services/authentication"
-import { collection, getDocs } from "firebase/firestore"
+import { TypedStatus } from "@/types/Theme";
+import { arrayUnion, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 
+export const createStatus = async (themeId: string, body: TypedStatus) => {
+  try{
+    const documentoRef = doc(database, 'themes', themeId);
+    await updateDoc(documentoRef, {
+      status: arrayUnion(body),
+    })
 
+    return
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 export const getThemeByUserId = async (userId: string) => {
   try{
-    const querySnapshot = await getDocs(collection(database, 'themes'))
+    const queryGet = query(collection(database, 'themes'), where('uid', '==', userId))
+    const querySnapshot = await getDocs(queryGet)
+
     const themeData = querySnapshot.docs
       .map((doc: any) => {
         return{
@@ -13,9 +27,8 @@ export const getThemeByUserId = async (userId: string) => {
           ...doc.data()
         }
       })
-      .filter((theme) => theme.uid === userId)[0]
 
-    return themeData
+    return themeData[0]
 
   } catch (error) {
     console.error(error)

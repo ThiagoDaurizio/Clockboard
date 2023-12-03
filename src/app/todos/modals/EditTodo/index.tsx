@@ -1,67 +1,80 @@
-import { createTodo } from '@/api/todos'
+'use client'
 import CompInputText from '@/components/InputText'
 import CompInputToggle from '@/components/InputToggle'
 import { globalContext } from '@/context/global'
 import { modalContext } from '@/context/modalsContext'
 import { todosContext } from '@/context/todosContext'
-import React, { useState } from 'react'
+import { TypedTodo, TypedTodoDTO } from '@/types/Todo'
+import React, { useEffect, useState } from 'react'
 
-const ModalCreateTodo = () => {
-  const { userTheme, userData, set_isLoading } = globalContext()
-  const { callCreateTodo} = todosContext()
-  const { set_modalCreateTodo } = modalContext()
+interface IProps {
+  actualTodo: TypedTodo
+}
+
+const ModalEditTodo = ( { actualTodo }:IProps ) => {
+  const { userTheme } = globalContext()
+  const { callUpdateTodoInfos } = todosContext()
+  const { modalEditTodo, set_modalEditTodo } = modalContext()
 
   const [todoTitle, set_todoTitle] = useState<string>('')
   const [todoInfoLabel1, set_todoInfoLabel1] = useState<string>('')
   const [todoInfoLabel2, set_todoInfoLabel2] = useState<string>('')
 
-  const [todoActiveMarker1, set_todoActiveMarker1] = useState<boolean>(false)
-  const [todoActiveMarker2, set_todoActiveMarker2] = useState<boolean>(false)
-  const [todoActiveMarker3, set_todoActiveMarker3] = useState<boolean>(false)
-  const [todoActiveMarker4, set_todoActiveMarker4] = useState<boolean>(false)
+  const [todoMarker1, set_todoMarker1] = useState<boolean>(false)
+  const [todoMarker2, set_todoMarker2] = useState<boolean>(false)
+  const [todoMarker3, set_todoMarker3] = useState<boolean>(false)
+  const [todoMarker4, set_todoMarker4] = useState<boolean>(false)
 
-  const handleCreate = async () => {
-    set_isLoading(true)
+  useEffect(() => {
+    if(modalEditTodo){
+      modalSetup()
+    }
 
+  }, [modalEditTodo])
+
+  const modalSetup = () => {
+    set_todoTitle(actualTodo.title)
+    set_todoInfoLabel1(actualTodo.infoLabel1)
+    set_todoInfoLabel2(actualTodo.infoLabel2)
+
+    const setupMarker1 = actualTodo.markers.filter((marker) => marker.position === 1)[0].isActive
+    const setupMarker2 = actualTodo.markers.filter((marker) => marker.position === 2)[0].isActive
+    const setupMarker3 = actualTodo.markers.filter((marker) => marker.position === 3)[0].isActive
+    const setupMarker4 = actualTodo.markers.filter((marker) => marker.position === 4)[0].isActive
+
+    set_todoMarker1(setupMarker1)
+    set_todoMarker2(setupMarker2)
+    set_todoMarker3(setupMarker3)
+    set_todoMarker4(setupMarker4)
+  }
+
+  const handleConfirm = async () => {
     const body = {
-      uid: userData!.uid,
       title: todoTitle,
       infoLabel1: todoInfoLabel1,
       infoLabel2: todoInfoLabel2,
       markers: [
-        {isActive: todoActiveMarker1, position: 1},
-        {isActive: todoActiveMarker2, position: 2},
-        {isActive: todoActiveMarker3, position: 3},
-        {isActive: todoActiveMarker4, position: 4}
+        {position: 1, isActive: todoMarker1},
+        {position: 2, isActive: todoMarker2},
+        {position: 3, isActive: todoMarker3},
+        {position: 4, isActive: todoMarker4},
       ],
-      statusId: ''
+      uid: actualTodo.uid,
+      statusId: actualTodo.statusId
     }
-    
-    callCreateTodo(body)
 
-    set_isLoading(false)
-    set_modalCreateTodo(false)
-    resetForm()
+    callUpdateTodoInfos(actualTodo.id, body)
+    set_modalEditTodo(false)
   }
 
-  const resetForm = () => {
-    set_todoTitle('')
-    set_todoInfoLabel1('')
-    set_todoInfoLabel2('')
-
-    set_todoActiveMarker1(false)
-    set_todoActiveMarker2(false)
-    set_todoActiveMarker3(false)
-    set_todoActiveMarker4(false)
+  const handleSaveChange = async () => {
 
   }
 
   return (
-    <div 
-      className="w-[340px] h-[400px] bg-gray-700 rounded-md flex flex-col items-center gap-3 p-4"
-    >
-      <h1 className='text-gray-200 font-semibold tracking-wider text-xl border border-transparent border-b-violet-600 w-[90%] text-center pb-2'>Create Todo</h1>
-
+    <div className="w-[340px] h-[400px] bg-gray-700 rounded-md flex flex-col items-center gap-3 p-4">
+      <h1 className='text-gray-200 font-semibold tracking-wider text-xl border border-transparent border-b-violet-600 w-[90%] text-center pb-2'>Edit Todo</h1>
+      
       <label 
         className="w-full"
       >
@@ -94,49 +107,49 @@ const ModalCreateTodo = () => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
-          <CompInputToggle toggle={todoActiveMarker1} set_toggle={set_todoActiveMarker1}/>
+          <CompInputToggle toggle={todoMarker1} set_toggle={set_todoMarker1}/>
         </div>
         <div className="flex flex-col items-center gap-1 text-green-400 capitalize text-sm tracking-wide">
           {userTheme?.markers?.filter((marker) => marker.position === 2).map((item) => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
-          <CompInputToggle toggle={todoActiveMarker2} set_toggle={set_todoActiveMarker2}/>
+          <CompInputToggle toggle={todoMarker2} set_toggle={set_todoMarker2}/>
         </div>
         <div className="flex flex-col items-center gap-1 text-green-400 capitalize text-sm tracking-wide">
           {userTheme?.markers?.filter((marker) => marker.position === 3).map((item) => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
-          <CompInputToggle toggle={todoActiveMarker3} set_toggle={set_todoActiveMarker3}/>
+          <CompInputToggle toggle={todoMarker3} set_toggle={set_todoMarker3}/>
         </div>
         <div className="flex flex-col items-center gap-1 text-green-400 capitalize text-sm tracking-wide">
           {userTheme?.markers?.filter((marker) => marker.position === 4).map((item) => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
-          <CompInputToggle toggle={todoActiveMarker4} set_toggle={set_todoActiveMarker4}/>
+          <CompInputToggle toggle={todoMarker4} set_toggle={set_todoMarker4}/>
         </div>
       </div>
-    
+
       <div 
         className="flex justify-center w-full gap-24 mt-3"
       >
         <button
-          onClick={handleCreate}
+          onClick={handleConfirm}
           className="bg-violet-600 text-gray-200 text-lg p-1 px-2 min-w-[100px] rounded transition-colors duration-300 hover:bg-violet-700"
         >
-          Create
+          Confirm
         </button>
         <button
-          onClick={() => set_modalCreateTodo(false)}
+          onClick={() => set_modalEditTodo(false)}
           className="bg-violet-600 text-gray-200 text-lg p-1 px-2 min-w-[100px] rounded transition-colors duration-300 hover:bg-violet-700"
         >
-          Cancelar
+          Cancel
         </button>
       </div>
     </div>
   )
 }
 
-export default ModalCreateTodo
+export default ModalEditTodo

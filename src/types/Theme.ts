@@ -1,15 +1,14 @@
-type Marker = {
+export type TypedMarker = {
   color: string
   label: string
   position: number
 }
 
-type Status = {
+export type TypedStatus = {
   color: string
   colorText: string
   id: string
   label: string
-  uid: string
 }
 
 export type TypedTheme = {
@@ -17,6 +16,6 @@ export type TypedTheme = {
   uid: string
   infoLabel1: string
   infoLabel2: string
-  markers: Marker[]
-  status: Status[]
+  markers: TypedMarker[]
+  status: TypedStatus[]
 }

@@ -3,6 +3,8 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { GlobalContextProvider } from '@/context/global'
 import Loading from '@/components/Loading/loading'
+import { TodosContextProvider } from '@/context/todosContext'
+import { ModalContextProvider } from '@/context/modalsContext'
 
 export const metadata = {
   title: 'Create Next App',
@@ -17,11 +19,15 @@ export default function RootLayout({
   return (
     <html>
       <GlobalContextProvider>
-        <body className="bg-gray-800 relative">
-          <Loading/>
-          <Menubar/>
-          {children}
-        </body>
+        <ModalContextProvider>
+          <TodosContextProvider>
+            <body className="bg-gray-800 relative flex flex-col items-center select-none">
+              <Loading/>
+              <Menubar/>
+              {children}
+            </body>
+          </TodosContextProvider>
+        </ModalContextProvider>
       </GlobalContextProvider>
     </html>
   )

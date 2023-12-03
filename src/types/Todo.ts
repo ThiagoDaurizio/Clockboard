@@ -11,4 +11,14 @@ export type TypedTodo = {
   markers: Marker[]
   statusId: string
   uid: string
+  createdAt: any
+}
+
+export type TypedTodoDTO = {
+  uid: string
+  title: string
+  infoLabel1: string
+  infoLabel2: string
+  markers: Marker[]
+  statusId: string
 }
