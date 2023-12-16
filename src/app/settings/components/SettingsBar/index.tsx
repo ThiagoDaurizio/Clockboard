@@ -3,6 +3,7 @@ import { IconsApp } from '@/assets/icons'
 import { globalContext } from '@/context/global'
 import { modalContext } from '@/context/modalsContext'
 import React from 'react'
+import SettingsUser from '../SettingsUser'
 
 const SettingsBar = () => {
   const { set_modalSettingsEditMarkers, set_modalSettingsEditInfolabels, set_modalSettingsEditShortcuts } = modalContext()
@@ -12,6 +13,7 @@ const SettingsBar = () => {
     <div
       className="flex flex-col gap-4 bg-gray-800 border border-gray-400 rounded-md p-4 text-gray-300 w-[300px] max-h-[80vh]"
     >
+      <SettingsUser/>
       <h1 className="text-center border border-transparent border-b-violet-600 w-[90%] mx-auto font-semibold">LABELS</h1>
       <div
         className="flex justify-between items-center"
