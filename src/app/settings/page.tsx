@@ -15,18 +15,11 @@ import ModalEditInfolabels from './modals/EditInfolabels'
 import ModalEditMarkers from './modals/EditMarkers'
 import ModalEditShortcuts from './modals/EditShortcuts'
 
-export enum ActualSectionENUM {
-  core = 'core',
-  status = 'status',
-  others = 'others',
-
-}
-
 const page = () => {
   const { userTheme, isLoading } = globalContext()
   const { modalSettingsCreateStatus, modalSettingsEditStatus, modalSettingsDeleteStatus, modalSettingsEditInfolabels, modalSettingsEditMarkers, modalSettingsEditShortcuts } = modalContext()
   
-  const [actualSection, set_actualSection] = useState<ActualSectionENUM>(ActualSectionENUM.core)
+  const [actualSection, set_actualSection] = useState<'core' | 'status' | 'others'>('core')
   const [actualStatus, set_actualStatus] = useState<TypedStatus>({} as TypedStatus)
 
   return (
@@ -36,7 +29,7 @@ const page = () => {
         set_actualSection={set_actualSection}
       />
 
-      {actualSection === ActualSectionENUM.core && !isLoading && userTheme.status === 'completed' &&(
+      {actualSection === 'core' && !isLoading && userTheme.status === 'completed' &&(
         <section 
           className="flex"
         >
@@ -44,7 +37,7 @@ const page = () => {
         </section>
       )}
 
-      {actualSection === ActualSectionENUM.status && !isLoading && userTheme.status === 'completed' &&(
+      {actualSection === 'status' && !isLoading && userTheme.status === 'completed' &&(
         <section 
           className="flex"
         >

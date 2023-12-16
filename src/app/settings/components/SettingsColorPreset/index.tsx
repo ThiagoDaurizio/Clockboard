@@ -20,6 +20,7 @@ const SettingsColorPreset = ( { handleColor }:IProps ) => {
       {colors.map((item) => {
         return(
           <li 
+            key={item}
             onClick={() => handleColor(item)}
             className="w-6 h-5 cursor-pointer border bordar-gray-200 rounded-sm"
             style={{backgroundColor: item}}
