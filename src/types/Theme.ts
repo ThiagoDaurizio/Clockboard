@@ -6,9 +6,15 @@ export type TypedMarker = {
 
 export type TypedStatus = {
   color: string
-  colorText: string
+  colorText: boolean
   id: string
   label: string
+}
+
+export type TypedShortcut = {
+  label: string
+  url: string
+  icon: '' | 'gitbranch' | 'music' | 'github' | 'gitlab' | 'spotify' | 'youtube' | 'chat' | 'play' | 'react'
 }
 
 export type TypedTheme = {
@@ -16,6 +22,8 @@ export type TypedTheme = {
   uid: string
   infoLabel1: string
   infoLabel2: string
+  shortcut1: TypedShortcut
+  shortcut2:TypedShortcut
   markers: TypedMarker[]
   status: TypedStatus[]
 }

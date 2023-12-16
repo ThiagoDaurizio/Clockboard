@@ -39,7 +39,7 @@ export const getTodosByUserId = async (userId: string) =>  {
   }
 }
 
-export const chanceTodoInfos = async (todoId: string, newBody: TypedTodoDTO) => {
+export const changeTodoInfos = async (todoId: string, newBody: TypedTodoDTO) => {
   await updateDoc(doc(database, 'todos', todoId), {
     title: newBody.title,
     infoLabel1: newBody.infoLabel1,

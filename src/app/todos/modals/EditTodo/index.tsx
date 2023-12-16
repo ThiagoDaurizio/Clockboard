@@ -72,9 +72,7 @@ const ModalEditTodo = ( { actualTodo }:IProps ) => {
   }
 
   return (
-    <div className="w-[340px] h-[400px] bg-gray-700 rounded-md flex flex-col items-center gap-3 p-4">
-      <h1 className='text-gray-200 font-semibold tracking-wider text-xl border border-transparent border-b-violet-600 w-[90%] text-center pb-2'>Edit Todo</h1>
-      
+    <>
       <label 
         className="w-full"
       >
@@ -89,13 +87,13 @@ const ModalEditTodo = ( { actualTodo }:IProps ) => {
       >
         <label className="flex flex-col max-w-[50%]">
           <span className="capitalize text-green-400 text-sm mb-1 pl-1">
-            {userTheme?.infoLabel1}
+            {userTheme?.data?.infoLabel1}
           </span>
           <CompInputText text={todoInfoLabel1} set_text={set_todoInfoLabel1} width={'90%'} />
         </label>
         <label className="flex flex-col w-full max-w-[50%] items-end">
           <span className="capitalize text-green-400 text-sm mb-1 pr-1">
-            {userTheme.infoLabel2}
+            {userTheme?.data?.infoLabel2}
           </span>
           <CompInputText text={todoInfoLabel2} set_text={set_todoInfoLabel2} width={'90%'} />
         </label>
@@ -103,28 +101,28 @@ const ModalEditTodo = ( { actualTodo }:IProps ) => {
 
       <div className="grid grid-cols-2 w-full gap-4">
         <div className="flex flex-col items-center gap-1 text-green-400 capitalize text-sm tracking-wide">
-          {userTheme?.markers?.filter((marker) => marker.position === 1).map((item) => {
+          {userTheme?.data?.markers?.filter((marker) => marker.position === 1).map((item) => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
           <CompInputToggle toggle={todoMarker1} set_toggle={set_todoMarker1}/>
         </div>
         <div className="flex flex-col items-center gap-1 text-green-400 capitalize text-sm tracking-wide">
-          {userTheme?.markers?.filter((marker) => marker.position === 2).map((item) => {
+          {userTheme?.data?.markers?.filter((marker) => marker.position === 2).map((item) => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
           <CompInputToggle toggle={todoMarker2} set_toggle={set_todoMarker2}/>
         </div>
         <div className="flex flex-col items-center gap-1 text-green-400 capitalize text-sm tracking-wide">
-          {userTheme?.markers?.filter((marker) => marker.position === 3).map((item) => {
+          {userTheme?.data?.markers?.filter((marker) => marker.position === 3).map((item) => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
           <CompInputToggle toggle={todoMarker3} set_toggle={set_todoMarker3}/>
         </div>
         <div className="flex flex-col items-center gap-1 text-green-400 capitalize text-sm tracking-wide">
-          {userTheme?.markers?.filter((marker) => marker.position === 4).map((item) => {
+          {userTheme?.data?.markers?.filter((marker) => marker.position === 4).map((item) => {
             return(
               <p key={item.position}>{item.label}</p>
               )})}
@@ -148,7 +146,7 @@ const ModalEditTodo = ( { actualTodo }:IProps ) => {
           Cancel
         </button>
       </div>
-    </div>
+    </>
   )
 }
 

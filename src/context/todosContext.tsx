@@ -2,7 +2,7 @@
 import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { globalContext } from './global'
 import { TypedTodo, TypedTodoDTO } from '@/types/Todo'
-import { changeTodoStatus, deleteTodoById, getTodosByUserId, createTodo, chanceTodoInfos } from '@/api/todos'
+import { changeTodoStatus, deleteTodoById, getTodosByUserId, createTodo, changeTodoInfos } from '@/api/todos'
 
 interface TodoListDataInterface {
   status: 'idle' | 'pedding' | 'completed' | 'failed'
@@ -12,6 +12,7 @@ interface TodoListDataInterface {
 interface TodosContextInterface {
   todosListData: TodoListDataInterface
   getUserTodos: () => void
+  getTodoStatus: (todoStatus: string) => void
   callUpdateTodoInfos: (todoId: string, newBody: TypedTodoDTO) => void
   callUpdateTodoStatus: (todoId: string, statusId: string) => void
   callDeleteTodo: (todoId: string) => void
@@ -27,7 +28,7 @@ interface IProps {
 
 
 export const TodosContextProvider = ( { children }:IProps ) => {
-  const { userData, set_isLoading } = globalContext()
+  const { userData, userTheme, set_isLoading } = globalContext()
   const [todosListData, set_todosListData] = useState<TodoListDataInterface>({ status: 'idle', data: []})
   const [watcher, set_watcher] = useState<number>(0)
 
@@ -36,26 +37,6 @@ export const TodosContextProvider = ( { children }:IProps ) => {
       getUserTodos()
     }
   }, [userData])
-
-  const callCreateTodo = async (todoBody: TypedTodoDTO) => {
-    await createTodo(todoBody)
-    await getUserTodos()
-  }
-
-  const callUpdateTodoInfos = async (todoId: string, newBody: TypedTodoDTO) => {
-    await chanceTodoInfos(todoId, newBody)
-    await getUserTodos()
-  }
-
-  const callUpdateTodoStatus = async (todoId: string, statusId: string) => {
-    await changeTodoStatus(todoId, statusId)
-    await getUserTodos()
-  }
-
-  const callDeleteTodo = async (todoId: string) => {
-    await deleteTodoById(todoId)
-    await getUserTodos()
-  }
 
   const getUserTodos = async () => {
     set_isLoading(true)
@@ -72,10 +53,36 @@ export const TodosContextProvider = ( { children }:IProps ) => {
     return
   }
 
+  const getTodoStatus = async (todoStatus: string) => {
+    userTheme?.data?.status?.filter((status) => status.id === todoStatus)[0]
+  }
+
+  const callCreateTodo = async (todoBody: TypedTodoDTO) => {
+    await createTodo(todoBody)
+    await getUserTodos()
+  }
+
+  const callUpdateTodoInfos = async (todoId: string, newBody: TypedTodoDTO) => {
+    await changeTodoInfos(todoId, newBody)
+    await getUserTodos()
+  }
+
+  const callUpdateTodoStatus = async (todoId: string, statusId: string) => {
+    await changeTodoStatus(todoId, statusId)
+    await getUserTodos()
+  }
+
+  const callDeleteTodo = async (todoId: string) => {
+    await deleteTodoById(todoId)
+    await getUserTodos()
+  }
+
+
   return (
     <TodosContext.Provider value={{
       todosListData,
       getUserTodos,
+      getTodoStatus,
       callUpdateTodoInfos,
       callUpdateTodoStatus,
       callDeleteTodo,

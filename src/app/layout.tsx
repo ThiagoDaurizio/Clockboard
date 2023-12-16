@@ -1,4 +1,4 @@
-import Menubar from '@/components/Menubar/infex'
+import Menubar from '@/components/Menubar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { GlobalContextProvider } from '@/context/global'

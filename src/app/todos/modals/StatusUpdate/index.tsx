@@ -19,17 +19,17 @@ const ModalStatusUpdate = ( { actualTodo }:IProps ) => {
   }
 
   return (
-    <div className='bg-gray-700 w-[240px] min-h-[280px] h-fit rounded-md p-4 flex flex-col justify-between items-center'>
+    <>
         <ul 
-          className="flex flex-col gap-2 w-full"        
+          className="flex flex-col gap-2 w-full p-2 pl-4 overflow-y-scroll max-h-[400px]"        
         >
-          {userTheme?.status?.map((status) => {
+          {userTheme?.data?.status?.map((status) => {
             return(
               <li
                 key={status.id}
                 onClick={() => handleChooseStatus(actualTodo.id, status.id)}
                 className="rounded text-center capitalize p-1 px-2 font-medium tracking-wide cursor-pointer transition-all duration-200 w-full hover:opacity-80"
-                style={{backgroundColor: status.color, color: status.colorText}}
+                style={{backgroundColor: status.color, color: status.colorText ? 'white' : 'black'}}
               >
                 {status.label}
               </li>
@@ -38,11 +38,11 @@ const ModalStatusUpdate = ( { actualTodo }:IProps ) => {
         </ul>
         <button 
           onClick={() => set_modalUpdateTodoStatus(false)}
-          className="bg-violet-600 text-gray-200 rounded-md p-1 px-3 border border-gray-300 transition-all duration-300 hover:bg-violet-700"
+          className="bg-violet-600 text-gray-200 rounded-md mt-5 p-1 px-3 border border-gray-300 transition-all duration-300 hover:bg-violet-700"
         >
           Cancel
         </button>
-    </div>
+    </>
   )
 }
 

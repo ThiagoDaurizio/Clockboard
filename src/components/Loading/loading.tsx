@@ -9,7 +9,7 @@ const Loading = () => {
   return (
     <div>
       {isLoading && (
-        <div className="h-screen w-screen fixed top-0 left-0 bg-gray-800/60 z-50">
+        <div className="h-screen w-screen fixed top-0 left-0 bg-slate-800/60 z-50">
           <div className="animate-ping fixed top-[50%] left-[50%] text-5xl text-violet-500">
             <IconsApp.logo/>
           </div>

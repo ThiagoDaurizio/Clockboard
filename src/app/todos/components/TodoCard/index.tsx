@@ -7,6 +7,7 @@ import { modalContext } from '@/context/modalsContext'
 import { IconsApp } from '@/assets/icons'
 import CompModal from '@/components/Modal'
 import ModalDeleteTodo from '../../modals/DeleteTodo'
+import { todosContext } from '@/context/todosContext'
 
 interface IProps {
   todo: TypedTodo
@@ -15,6 +16,7 @@ interface IProps {
 
 const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
   const { userTheme } = globalContext()
+  const { getTodoStatus } = todosContext()
   const { set_modalEditTodo, set_modalUpdateTodoStatus, set_modalDeleteTodo } = modalContext()
 
   const [toolsOpened, set_toolsOpened] = useState<boolean>(false)
@@ -28,9 +30,9 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
 
 
   useEffect(() => {
-    const actualStatus = userTheme?.status?.filter((status) => status.id === todo.statusId)[0]
+    const actualStatus = userTheme?.data?.status?.filter((status) => status.id === todo.statusId)[0]
     set_cardStatus(actualStatus)
-  }, [todo.statusId])
+  }, [todo.statusId, userTheme])
 
   const handleChooseStatus = () => {
     set_actualTodo(todo)
@@ -55,16 +57,16 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
 
       <div className="flex justify-between gap-4">
         <p className="flex flex-col gap-1 w-[50%]">
-          <span className="text-green-400 text-xs capitalize text-left pl-4">
-            {userTheme.infoLabel1}
+          <span className="text-green-400 text-xs text-left pl-4">
+            {userTheme?.data?.infoLabel1}
           </span>
           <span className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500">
             {todo.infoLabel1}
           </span>
         </p>
         <p className="flex flex-col gap-1 w-[50%]">
-          <span className="text-green-400 text-xs capitalize text-right  pr-4">
-            {userTheme.infoLabel2}
+          <span className="text-green-400 text-xs text-right  pr-4">
+            {userTheme?.data?.infoLabel2}
           </span>
           <span className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500">
             {todo.infoLabel2}
@@ -106,14 +108,14 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
       >
         <p
           className="w-full h-full flex items-center justify-center font-medium rounded-t-md rounded-b-xl capitalize tracking-wider"
-          style={{backgroundColor: cardStatus?.color, color: cardStatus?.colorText}}
+          style={{backgroundColor: cardStatus?.color, color: cardStatus?.colorText ? 'white' : 'black'}}
         >
           {cardStatus ? cardStatus?.label : 'SELECT AN STATUS'}
         </p>
       </div>
 
       <div className="absolute -bottom-4 right-4 w-40 h-8 flex justify-center items-center gap-2">
-        {userTheme?.markers?.filter((marker) => marker.position === 1).map((item) => {
+        {userTheme?.data?.markers?.filter((marker) => marker.position === 1).map((item) => {
           const markerActived = todo.markers.filter((marker) => marker.position === 1 && marker.isActive === true)[0]?.isActive
           return markerActived ?
             <p 
@@ -134,7 +136,7 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
               className="w-7 h-5 rounded-3xl"
             ></p>
         })}
-        {userTheme?.markers?.filter((marker) => marker.position === 2).map((item) => {
+        {userTheme?.data?.markers?.filter((marker) => marker.position === 2).map((item) => {
           const markerActived = todo.markers.filter((marker) => marker.position === 2 && marker.isActive === true)[0]?.isActive
           return markerActived ?
             <p 
@@ -155,7 +157,7 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
               className="w-7 h-5 rounded-3xl"
             ></p>
         })}
-        {userTheme?.markers?.filter((marker) => marker.position === 3).map((item) => {
+        {userTheme?.data?.markers?.filter((marker) => marker.position === 3).map((item) => {
           const markerActived = todo.markers.filter((marker) => marker.position === 3 && marker.isActive === true)[0]?.isActive
           return markerActived ?
             <p 
@@ -176,7 +178,7 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
               className="w-7 h-5 rounded-3xl"
             ></p>
         })}
-        {userTheme?.markers?.filter((marker) => marker.position === 4).map((item) => {
+        {userTheme?.data?.markers?.filter((marker) => marker.position === 4).map((item) => {
           const markerActived = todo.markers.filter((marker) => marker.position === 4 && marker.isActive === true)[0]?.isActive
           return markerActived ?
             <p 

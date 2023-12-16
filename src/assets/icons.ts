@@ -1,5 +1,30 @@
-import { FaGithub as IconGithub, FaSpotify as IconSpotify } from "react-icons/fa";
-import { IoSettingsOutline as IconSettings, IoTrashOutline as IconDelete, IoOpenOutline as IconEdit, IoAddOutline as IconAdd } from "react-icons/io5";
+import { 
+  FaGithub as IconGithub, 
+  FaSpotify as IconSpotify, 
+  FaYoutube as IconYoutube 
+} from "react-icons/fa";
+
+import { 
+  FaGitlab as IconGitlab 
+} from "react-icons/fa6";
+
+import { 
+  IoIosGitBranch as IconGitBranch, 
+  IoIosMusicalNotes as IconMusic, 
+  IoIosCheckmarkCircleOutline  as IconAccept, 
+  IoIosCloseCircleOutline as IconDecline,
+  IoIosSearch  as IconSearch 
+} from "react-icons/io";
+
+import { 
+  IoSettingsOutline as IconSettings, 
+  IoTrashOutline as IconDelete, 
+  IoOpenOutline as IconEdit, 
+  IoAddOutline as IconAdd, 
+  IoChatboxEllipsesOutline as IconChat,
+  IoGameControllerOutline  as IconPlay,
+  IoLogoElectron as IconReact
+} from "react-icons/io5";
 
 
 
@@ -10,11 +35,21 @@ export const IconsApp = {
   logo: AppLogo,
   add: IconAdd,
   edit: IconEdit,
-  delete: IconDelete
+  delete: IconDelete,
+  accept: IconAccept,
+  decline: IconDecline,
+  search: IconSearch,
 }
 
 export const IconsMenu = {
+  gitbranch: IconGitBranch,
+  gitlab: IconGitlab,
   github: IconGithub,
+  music: IconMusic,
   spotify: IconSpotify,
-  settings: IconSettings
+  youtube: IconYoutube,
+  settings: IconSettings,
+  chat: IconChat,
+  play: IconPlay,
+  react: IconReact
 }
