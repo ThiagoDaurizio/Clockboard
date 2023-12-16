@@ -35,18 +35,6 @@ const SettingsHeader = ( { actualSection, set_actualSection }:IProps ) => {
       >
         STATUS
       </li>
-      <li
-        onClick={() => set_actualSection(ActualSectionENUM.shortcuts)}
-        className="bg-gray-700 p-0 px-2 rounded-md text-gray-400 cursor-pointer transition-all duraction-500 border border-transparent hover:border-gray-400"
-        style={{
-          backgroundColor: actualSection === ActualSectionENUM.shortcuts ? 'rgb(75 85 99)' : 'rgb(55 65 81)',
-          color: actualSection === ActualSectionENUM.shortcuts ? 'rgb(74 222 128)' : 'rgb(156 163 175)',
-          paddingLeft: actualSection === ActualSectionENUM.shortcuts ? '1.25rem' : '8px',
-          paddingRight: actualSection === ActualSectionENUM.shortcuts ? '1.25rem' : '8px',
-        }}
-      >
-        SHORTCUTS
-      </li>
       <li 
         onClick={() => set_actualSection(ActualSectionENUM.others)}
         className="bg-gray-700 p-0 px-2 rounded-md text-gray-400 cursor-pointer transition-all duraction-500 border border-transparent hover:border-gray-400"

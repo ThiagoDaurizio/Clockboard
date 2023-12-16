@@ -18,7 +18,6 @@ import ModalEditShortcuts from './modals/EditShortcuts'
 export enum ActualSectionENUM {
   core = 'core',
   status = 'status',
-  shortcuts = 'shortcuts',
   others = 'others',
 
 }
