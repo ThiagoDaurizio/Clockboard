@@ -91,7 +91,7 @@ const ModalEditStatus = ( { actualStatus }:IProps ) => {
           onClick={handleConfirm}
           className="bg-violet-600 text-gray-200 text-lg p-1 px-2 min-w-[100px] rounded transition-colors duration-300 hover:bg-violet-700"
         >
-          Create
+          Confirm
         </button>
         <button
           onClick={() => set_modalSettingsEditStatus(false)}

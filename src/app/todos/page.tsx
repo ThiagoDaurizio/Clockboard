@@ -22,7 +22,7 @@ const page = () => {
   const filteredTodos = todosListData?.data?.filter((item: TypedTodo) => item.title.toLowerCase().includes(searchTodo.toLocaleLowerCase()))
 
   return (
-    <main className="flex flex-col items-center min-h-screen max-w-[1360px] w-full">
+    <main className="flex flex-col items-center min-h-screen max-w-[1360px] w-full pb-20">
       <TodoHeader 
         searchTodo={searchTodo}
         set_searchTodo={set_searchTodo}

@@ -13,6 +13,11 @@ input, textarea {
   background-blend-mode: multiply;
 } */
 
+body {
+  background: rgb(27, 26, 27);
+background: radial-gradient(circle, rgba(76, 29, 149, 0.200) 0%, rgba(46, 16, 101, 0.1) 35%, rgba(76, 31, 131, 0) 100%);
+}
+
 *{
   /* width */
   ::-webkit-scrollbar {

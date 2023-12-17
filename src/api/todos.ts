@@ -58,6 +58,14 @@ export const changeTodoStatus = async (todoId: string, newStatusId: string) => {
   return
 }
 
+export const bringTodoToUp = async (todoId: string) => {
+  await updateDoc(doc(database, 'todos', todoId), {
+    createAt: serverTimestamp(),
+  })
+
+  return
+}
+
 export const deleteTodoById = async (todoId: string) => {
   await deleteDoc(doc(database, "todos", todoId))
 

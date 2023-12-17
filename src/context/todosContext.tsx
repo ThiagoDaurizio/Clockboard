@@ -2,7 +2,7 @@
 import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { globalContext } from './global'
 import { TypedTodo, TypedTodoDTO } from '@/types/Todo'
-import { changeTodoStatus, deleteTodoById, getTodosByUserId, createTodo, changeTodoInfos } from '@/api/todos'
+import { changeTodoStatus, deleteTodoById, getTodosByUserId, createTodo, changeTodoInfos, bringTodoToUp } from '@/api/todos'
 
 interface TodoListDataInterface {
   status: 'idle' | 'pedding' | 'completed' | 'failed'
@@ -17,6 +17,7 @@ interface TodosContextInterface {
   callUpdateTodoStatus: (todoId: string, statusId: string) => void
   callDeleteTodo: (todoId: string) => void
   callCreateTodo: (todoBody: TypedTodoDTO) => void
+  callBringTodoToUp: (todoId: string) => void
   // set_todosListData: React.Dispatch<React.SetStateAction<TodoListData>>
 }
 
@@ -72,6 +73,11 @@ export const TodosContextProvider = ( { children }:IProps ) => {
     await getUserTodos()
   }
 
+  const callBringTodoToUp = async (todoId: string) => {
+    await bringTodoToUp(todoId)
+    await getUserTodos()
+  }
+
   const callDeleteTodo = async (todoId: string) => {
     await deleteTodoById(todoId)
     await getUserTodos()
@@ -86,7 +92,8 @@ export const TodosContextProvider = ( { children }:IProps ) => {
       callUpdateTodoInfos,
       callUpdateTodoStatus,
       callDeleteTodo,
-      callCreateTodo
+      callCreateTodo,
+      callBringTodoToUp
     }}>
       {children}
     </TodosContext.Provider>

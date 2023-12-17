@@ -16,7 +16,7 @@ interface IProps {
 
 const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
   const { userTheme } = globalContext()
-  const { getTodoStatus } = todosContext()
+  const { callBringTodoToUp } = todosContext()
   const { set_modalEditTodo, set_modalUpdateTodoStatus, set_modalDeleteTodo } = modalContext()
 
   const [toolsOpened, set_toolsOpened] = useState<boolean>(false)
@@ -83,17 +83,25 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
         </p>
       </div>
 
-      <div
-        className="flex items-center gap-4 absolute -bottom-4 left-4 h-10"
+      <button 
+        onClick={() => set_toolsOpened(!toolsOpened)}
+        className="absolute -bottom-3 transition-all duration-300 p-1 bg-violet-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-violet-700"
+        style={{transform: toolsOpened ? 'rotate(315deg' : 'rotate(0deg)'}}
       >
-        <button 
-          onClick={() => set_toolsOpened(!toolsOpened)}
-          className="transition-all duration-300 p-1 bg-violet-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-violet-700"
-          style={{transform: toolsOpened ? 'rotate(315deg' : 'rotate(0deg)'}}
+        <IconsApp.add/>
+      </button>
+
+      <button 
+          onClick={() => callBringTodoToUp(todo.id)}
+          className="absolute -bottom-3 left-16 transition-all duration-300 p-1 bg-violet-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-violet-700"
         >
-          <IconsApp.add/>
+          <IconsApp.arrowToUp/>
         </button>
 
+      <div
+        className="flex items-center gap-4 absolute -bottom-4 left-16 h-10"
+        style={{pointerEvents: toolsOpened ? 'auto' : 'none'}}
+      >
         <div
           className="flex items-center gap-4 overflow-hidden transition-all duration-500"
           style={{opacity: toolsOpened ? '100' : '0', pointerEvents: toolsOpened ? 'auto' : 'none'}}
