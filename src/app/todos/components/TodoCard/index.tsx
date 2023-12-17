@@ -51,7 +51,10 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
 
   return (
     <div className="bg-gray-700 w-[550px] h-36 rounded-md p-4 relative flex flex-col gap-3">
-      <p className="flex h-8 items-center justify-center gap-2 border border-transparent pb-1 text-center border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md cursor-pointer active:text-green-400 active:border-b-violet-500">
+      <p 
+        onClick={() => navigator.clipboard.writeText(todo.title)}
+        className="flex h-8 items-center justify-center gap-2 border border-transparent pb-1 text-center border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md cursor-pointer active:text-green-400 active:border-b-violet-500"
+      >
         {todo.title}
       </p>
 
@@ -60,7 +63,10 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
           <span className="text-green-400 text-xs text-left pl-4">
             {userTheme?.data?.infoLabel1}
           </span>
-          <span className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500">
+          <span 
+            onClick={() => navigator.clipboard.writeText(todo.infoLabel1)}
+            className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500"
+          >
             {todo.infoLabel1}
           </span>
         </p>
@@ -68,7 +74,10 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
           <span className="text-green-400 text-xs text-right  pr-4">
             {userTheme?.data?.infoLabel2}
           </span>
-          <span className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500">
+          <span 
+            onClick={() => navigator.clipboard.writeText(todo.infoLabel2)}
+            className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500"
+          >
             {todo.infoLabel2}
           </span>
         </p>

@@ -6,6 +6,13 @@ input, textarea {
   outline: none;
 }
 
+/* body{
+  background-image: url('../assets/backgroundglobe.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+} */
+
 *{
   /* width */
   ::-webkit-scrollbar {

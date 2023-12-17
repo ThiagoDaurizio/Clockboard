@@ -21,7 +21,8 @@ export default function RootLayout({
       <GlobalContextProvider>
         <ModalContextProvider>
           <TodosContextProvider>
-            <body className="bg-gray-800 relative flex flex-col items-center select-none">
+            <body className="bg-gray-800 relative flex flex-col items-center select-none"
+            >
               <Loading/>
               <Menubar/>
               {children}
