@@ -2,12 +2,32 @@
 import { IconsApp } from '@/assets/icons'
 import { globalContext } from '@/context/global'
 import { modalContext } from '@/context/modalsContext'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SettingsUser from '../SettingsUser'
+import { TypedMarker, TypedShortcut } from '@/types/Theme'
 
 const SettingsBar = () => {
   const { set_modalSettingsEditMarkers, set_modalSettingsEditInfolabels, set_modalSettingsEditShortcuts } = modalContext()
-  const { userTheme } = globalContext()
+  const { userTheme, getUserTheme } = globalContext()
+
+  const [settingsInfolabel1, set_settingsInfolabel1] = useState<string>('')
+  const [settingsInfolabel2, set_settingsInfolabel2] = useState<string>('')
+
+  const [settingsMarkers, set_settingsMarkers] = useState<TypedMarker[]>([])
+
+  const [settingsShortcut1, set_settingsShortcut1] = useState<TypedShortcut>({label: '', url: '#', icon: ''} as TypedShortcut)
+  const [settingsShortcut2, set_settingsShortcut2] = useState<TypedShortcut>({label: '', url: '#', icon: ''} as TypedShortcut)
+
+  useEffect(() => {
+    set_settingsInfolabel1(userTheme?.data?.infoLabel1)
+    set_settingsInfolabel2(userTheme?.data?.infoLabel2)
+    
+    set_settingsMarkers(userTheme?.data?.markers)
+    
+    set_settingsShortcut1(userTheme?.data?.shortcut1)
+    set_settingsShortcut2(userTheme?.data?.shortcut2)
+  }, [userTheme])
+
 
   return (
     <div
@@ -24,7 +44,7 @@ const SettingsBar = () => {
               Label 1
             </span>
             <span className="pl-4 text-gray-300">
-              {userTheme?.data?.infoLabel1}
+              {settingsInfolabel1}
             </span>
           </p>
 
@@ -33,7 +53,7 @@ const SettingsBar = () => {
               Label 2
             </span>
             <span className="pl-4 text-gray-300">
-              {userTheme?.data?.infoLabel2}
+              {settingsInfolabel2}
             </span>
           </p>
         </div>
@@ -48,7 +68,7 @@ const SettingsBar = () => {
       <h1 className="text-center border border-transparent border-b-violet-600 w-[90%] mx-auto font-semibold">MARKERS</h1>
       <div className="flex items-center justify-between">
         <ul className="flex flex-col gap-2">
-          {userTheme?.data?.markers?.map((item) => {
+          {settingsMarkers?.map((item) => {
             return(
               <li className="flex gap-2 items-center">
                 <span  
@@ -86,7 +106,7 @@ const SettingsBar = () => {
               Shortcut 1
             </span>
             <span className="pl-4 text-gray-300">
-              {userTheme?.data?.shortcut1?.label}
+              {settingsShortcut1?.label}
             </span>
           </p>
 
@@ -95,7 +115,7 @@ const SettingsBar = () => {
               Shortcut 2
             </span>
             <span className="pl-4 text-gray-300">
-              {userTheme?.data?.shortcut2?.label}
+              {settingsShortcut2?.label}
             </span>
           </p>
         </div>

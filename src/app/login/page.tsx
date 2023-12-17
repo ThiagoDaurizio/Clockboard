@@ -1,16 +1,12 @@
 'use client'
 import { loginWithGoogle } from '@/services/authentication'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const page = () => {
-
-  const router = useRouter()
-
   const login = async () => {
     await loginWithGoogle()
 
-    router.push('/todos')
+    window.location.pathname = '/todos'
   }
 
   return (

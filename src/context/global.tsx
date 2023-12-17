@@ -21,6 +21,7 @@ interface GlobalContextInterface {
   set_userTheme: React.Dispatch<React.SetStateAction<ThemeDataInterface>>
   userTodos: any[]
   set_userTodos: React.Dispatch<React.SetStateAction<any[]>>
+  getUserTheme: () => void
   callCreateStatus: (statusBody: TypedStatus) => void
   callEditStatus: (statusId: string, statusBody: TypedStatus) => void
   callDeleteStatus: (statusId: string) => void
@@ -110,6 +111,7 @@ export const GlobalContextProvider = ( { children }:IProps ) => {
       isLoading, set_isLoading,
       userTheme, set_userTheme,
       userTodos, set_userTodos,
+      getUserTheme,
       callCreateStatus,
       callEditStatus,
       callDeleteStatus,
