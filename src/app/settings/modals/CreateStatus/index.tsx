@@ -25,10 +25,18 @@ const ModalCreateStatus = () => {
 
     callCreateStatus(body)
     set_modalSettingsCreateStatus(false)
+    resetForm()
   }
 
   const handleColor = (colorHex: string) => {
     set_statusColor(colorHex)
+  }
+
+  const resetForm = () => {
+    set_statusTitle('')
+    set_statusColor('#fff')
+    set_statusTextColor(false)
+
   }
 
   return (

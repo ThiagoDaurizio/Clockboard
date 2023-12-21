@@ -1,5 +1,6 @@
 'use client'
 import { IconsApp } from '@/assets/icons'
+import CompTooltip from '@/components/Tooltip'
 import { globalContext } from '@/context/global'
 import { modalContext } from '@/context/modalsContext'
 import { TypedStatus } from '@/types/Theme'
@@ -57,15 +58,17 @@ const SettingsStatus = ( { set_actualStatus }: IProps ) => {
               <div className='flex gap-2'>
                 <button 
                   onClick={() => handleEditStatus(item)}
-                  className="transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-6 h-6 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
+                  className="relative group transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-6 h-6 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
                 >
                   <IconsApp.edit/>
+                  <CompTooltip label='Edit'/>
                 </button>
                 <button 
                   onClick={() => handleDeleteStatus(item)}
-                  className="transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-6 h-6 flex justify-center items-center hover:bg-gray-700 hover:border-rose-600 hover:text-rose-500"
+                  className="relative group transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-6 h-6 flex justify-center items-center hover:bg-gray-700 hover:border-rose-600 hover:text-rose-500"
                 >
                   <IconsApp.delete/>
+                  <CompTooltip label='Delete'/>
                 </button>
               </div>
             </li>

@@ -1,7 +1,8 @@
 import { 
   FaGithub as IconGithub, 
   FaSpotify as IconSpotify, 
-  FaYoutube as IconYoutube 
+  FaYoutube as IconYoutube, 
+  FaRegEdit as IconEdit
 } from "react-icons/fa";
 
 import { 
@@ -19,7 +20,6 @@ import {
 import { 
   IoSettingsOutline as IconSettings, 
   IoTrashOutline as IconDelete, 
-  IoOpenOutline as IconEdit, 
   IoAddOutline as IconAdd, 
   IoChatboxEllipsesOutline as IconChat,
   IoGameControllerOutline  as IconPlay,

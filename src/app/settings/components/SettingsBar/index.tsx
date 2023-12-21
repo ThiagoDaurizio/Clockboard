@@ -5,6 +5,7 @@ import { modalContext } from '@/context/modalsContext'
 import React, { useEffect, useState } from 'react'
 import SettingsUser from '../SettingsUser'
 import { TypedMarker, TypedShortcut } from '@/types/Theme'
+import CompTooltip from '@/components/Tooltip'
 
 const SettingsBar = () => {
   const { set_modalSettingsEditMarkers, set_modalSettingsEditInfolabels, set_modalSettingsEditShortcuts } = modalContext()
@@ -59,9 +60,10 @@ const SettingsBar = () => {
         </div>
         <button 
           onClick={() => set_modalSettingsEditInfolabels(true)}
-          className="transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
+          className="relative group transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
         >
           <IconsApp.edit/>
+          <CompTooltip label='Edit'/>
         </button>
       </div>
 
@@ -89,9 +91,10 @@ const SettingsBar = () => {
         </ul>
         <button 
           onClick={() => set_modalSettingsEditMarkers(true)}
-          className="transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
+          className="relative group transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
         >
           <IconsApp.edit/>
+          <CompTooltip label='Edit'/>
         </button>
       </div>
 
@@ -121,9 +124,10 @@ const SettingsBar = () => {
         </div>
         <button 
           onClick={() => set_modalSettingsEditShortcuts(true)}
-          className="transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
+          className="relative group transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
         >
           <IconsApp.edit/>
+          <CompTooltip label='Edit'/>
         </button>
       </div>
     </div>

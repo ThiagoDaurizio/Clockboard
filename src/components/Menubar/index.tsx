@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { IconsApp, IconsMenu } from '@/assets/icons'
 import { globalContext } from '@/context/global'
@@ -83,7 +83,7 @@ const Menubar = () => {
   return (
     <>
       {path !== '/login' &&(
-        <div 
+        <div
           className="fixed bottom-0 z-30 bg-gray-800 border border-transparent border-x-violet-600 rounded-t-3xl left-[50%] transform translate-x-[-50%] w-[160px] shadow-2xl"
         >
           <div 
@@ -149,7 +149,7 @@ const Menubar = () => {
               >
                 <IconsMenu.settings/>
                 <span 
-                  className="absolute flex items-center justify-center whitespace-nowrap p-1 px-2 bg-gray-800 border border-gray-400 text-green-300 min-w-fit h-6 text-sm -top-8 left-[50%] rounded-3xl transition-all duration-300 pointer-events-none transform translate-x-[-50%]"
+                  className="absolute flex items-center justify-center whitespace-nowrap p-1 px-2 bg-gray-800 border border-gray-400 text-green-300 min-w-fit h-6 text-sm rounded-3xl transition-all duration-300 pointer-events-none -top-8 left-[50%] transform translate-x-[-50%]"
                   style={{opacity: hoveredLink3 ? '0.90' : '0'}}
                 >
                   Settings

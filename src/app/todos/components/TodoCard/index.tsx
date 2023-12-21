@@ -8,6 +8,7 @@ import { IconsApp } from '@/assets/icons'
 import CompModal from '@/components/Modal'
 import ModalDeleteTodo from '../../modals/DeleteTodo'
 import { todosContext } from '@/context/todosContext'
+import CompTooltip from '@/components/Tooltip'
 
 interface IProps {
   todo: TypedTodo
@@ -92,29 +93,34 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
       </button>
 
       <button 
-          onClick={() => callBringTodoToUp(todo.id)}
-          className="absolute -bottom-3 left-16 transition-all duration-300 p-1 bg-violet-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-violet-700"
-        >
-          <IconsApp.arrowToUp/>
-        </button>
+        onClick={() => callBringTodoToUp(todo.id)}
+        className="absolute group -bottom-3 left-16 transition-all duration-300 p-1 bg-violet-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-violet-700"
+      >
+        <IconsApp.arrowToUp/>
+        <CompTooltip label='To First'/>
+      </button>
 
       <div
         className="flex items-center gap-4 absolute -bottom-4 left-16 h-10"
         style={{pointerEvents: toolsOpened ? 'auto' : 'none'}}
       >
         <div
-          className="flex items-center gap-4 overflow-hidden transition-all duration-500"
+          className="flex items-center gap-4 transition-all duration-500"
           style={{opacity: toolsOpened ? '100' : '0', pointerEvents: toolsOpened ? 'auto' : 'none'}}
         >
           <button 
             onClick={handleEditTodo}
-            className="transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400">
+            className="relative group transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:text-green-400"
+          >
             <IconsApp.edit/>
+            <CompTooltip label='Edit'/>
           </button>
           <button 
             onClick={handleDeleteTodo}
-            className="transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:border-rose-600 hover:text-rose-500">
+            className="relative group transition-all duration-300 p-1 bg-gray-600 rounded-full border-2 border-gray-300 text-gray-200 text-xl w-8 h-8 flex justify-center items-center hover:bg-gray-700 hover:border-rose-600 hover:text-rose-500"
+          >
             <IconsApp.delete/>
+            <CompTooltip label='Delete'/>
           </button>
         </div>
       </div>
