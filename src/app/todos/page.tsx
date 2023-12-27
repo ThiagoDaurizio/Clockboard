@@ -28,7 +28,7 @@ const page = () => {
         set_searchTodo={set_searchTodo}
       />
 
-      <ul className="grid grid-cols-2 gap-10">
+      <ul className="flex flex-wrap gap-10 justify-center">
         {searchTodo.trim() ? 
           filteredTodos?.map((item: TypedTodo) => {
             return(

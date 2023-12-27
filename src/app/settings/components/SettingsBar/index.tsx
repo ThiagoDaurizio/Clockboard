@@ -44,7 +44,7 @@ const SettingsBar = () => {
             <span className="text-xs text-green-400 font-medium">
               Label 1
             </span>
-            <span className="pl-4 text-gray-300">
+            <span className="pl-4 text-gray-300 max-w-[220px] truncate">
               {settingsInfolabel1}
             </span>
           </p>
@@ -53,7 +53,7 @@ const SettingsBar = () => {
             <span className="text-xs text-green-400 font-medium">
               Label 2
             </span>
-            <span className="pl-4 text-gray-300">
+            <span className="pl-4 text-gray-300 max-w-[220px] truncate">
               {settingsInfolabel2}
             </span>
           </p>
@@ -69,7 +69,7 @@ const SettingsBar = () => {
 
       <h1 className="text-center border border-transparent border-b-violet-600 w-[90%] mx-auto font-semibold">MARKERS</h1>
       <div className="flex items-center justify-between">
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 w-full">
           {settingsMarkers?.map((item) => {
             return(
               <li className="flex gap-2 items-center">
@@ -77,11 +77,11 @@ const SettingsBar = () => {
                   className='inline-block h-6 w-6 rounded-sm border border-gray-300'
                   style={{backgroundColor: item.color}}
                 />
-                <p className="flex gap-1 items-center">
+                <p className="flex gap-1 items-center w-full">
                   <span className="text-green-400 text-lg">
                     {item.position}.
                   </span>
-                  <span>
+                  <span className="flex-1 truncate max-w-[180px]">
                     {item.label}
                   </span>
                 </p>

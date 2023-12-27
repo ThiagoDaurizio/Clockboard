@@ -28,7 +28,7 @@ const ModalStatusUpdate = ( { actualTodo }:IProps ) => {
               <li
                 key={status.id}
                 onClick={() => handleChooseStatus(actualTodo.id, status.id)}
-                className="rounded text-center capitalize p-1 px-2 font-medium tracking-wide cursor-pointer transition-all duration-200 w-full hover:opacity-80"
+                className="w-full rounded text-center capitalize p-1 px-2 font-medium tracking-wide cursor-pointer transition-all duration-200 hover:opacity-80 max-w-[220px] truncate"
                 style={{backgroundColor: status.color, color: status.colorText ? 'white' : 'black'}}
               >
                 {status.label}

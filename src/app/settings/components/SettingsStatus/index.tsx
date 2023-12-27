@@ -52,7 +52,7 @@ const SettingsStatus = ( { set_actualStatus }: IProps ) => {
                   className="inline-block h-6 w-6 rounded-sm border border-gray-300"
                   style={{backgroundColor: item.color}}
                 />
-                <p className="whitespace-nowrap">{item.label}</p>
+                <p className="whitespace-nowrap flex-1 truncate max-w-[170px]">{item.label}</p>
               </div>
 
               <div className='flex gap-2'>

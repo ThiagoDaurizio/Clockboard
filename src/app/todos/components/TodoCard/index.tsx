@@ -54,30 +54,30 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
     <div className="bg-gray-700 w-[550px] h-36 rounded-md p-4 relative flex flex-col gap-3">
       <p 
         onClick={() => navigator.clipboard.writeText(todo.title)}
-        className="flex h-8 items-center justify-center gap-2 border border-transparent pb-1 text-center border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md cursor-pointer active:text-green-400 active:border-b-violet-500"
+        className="flex truncate h-8 p-1 items-center justify-center gap-2 border border-transparent pb-1 text-center border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md cursor-pointer active:text-green-400 active:border-b-violet-500"
       >
         {todo.title}
       </p>
 
       <div className="flex justify-between gap-4">
-        <p className="flex flex-col gap-1 w-[50%]">
-          <span className="text-green-400 text-xs text-left pl-4">
+        <p className="flex flex-col gap-1 w-[240px] items-start">
+          <span className="block w-full max-w-[220px] truncate text-green-400 text-xs text-left pl-4">
             {userTheme?.data?.infoLabel1}
           </span>
           <span 
             onClick={() => navigator.clipboard.writeText(todo.infoLabel1)}
-            className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500"
+            className="block w-full max-w-[220px] truncate p-1 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500"
           >
             {todo.infoLabel1}
           </span>
         </p>
-        <p className="flex flex-col gap-1 w-[50%]">
-          <span className="text-green-400 text-xs text-right  pr-4">
+        <p className="flex flex-col gap-1 w-[240px] items-end">
+          <span className="block w-full max-w-[220px] truncate text-green-400 text-xs text-right pr-4">
             {userTheme?.data?.infoLabel2}
           </span>
           <span 
             onClick={() => navigator.clipboard.writeText(todo.infoLabel2)}
-            className="gap-2 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500"
+            className="block w-full max-w-[220px] truncate p-1 border border-transparent pb-1 h-8 border-b-violet-600 text-gray-300 font-medium transition duration-200 bg-gray-600/50 hover:bg-gray-600 rounded-md text-center cursor-pointer active:text-green-400 active:border-b-violet-500"
           >
             {todo.infoLabel2}
           </span>
@@ -130,7 +130,7 @@ const TodoCard = ( { todo, set_actualTodo }: IProps ) => {
         className="cursor-pointer absolute -bottom-4 h-8 left-[50%] translate-x-[-50%] bg-gray-500 w-[200px] flex items-center justify-center text-gray-800 font-medium rounded-t-md rounded-b-xl"
       >
         <p
-          className="w-full h-full flex items-center justify-center font-medium rounded-t-md rounded-b-xl capitalize tracking-wider"
+          className="w-full h-full truncate flex items-center justify-center font-medium rounded-t-md rounded-b-xl capitalize tracking-wider p-1 transition-all duration-200 hover:opacity-80"
           style={{backgroundColor: cardStatus?.color, color: cardStatus?.colorText ? 'white' : 'black'}}
         >
           {cardStatus ? cardStatus?.label : 'SELECT AN STATUS'}
