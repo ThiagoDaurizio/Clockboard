@@ -19,7 +19,7 @@ const page = () => {
   const [searchTodo, set_searchTodo] = useState<string>('')
   const [actualTodo, set_actualTodo] = useState<TypedTodo>({} as TypedTodo)
 
-  const filteredTodos = todosListData?.data?.filter((item: TypedTodo) => item.title.toLowerCase().includes(searchTodo.toLocaleLowerCase()))
+  const filteredTodos = todosListData?.data?.filter((item: TypedTodo) => item.title.toLowerCase().includes(searchTodo.toLowerCase()))
 
   return (
     <main className="flex flex-col items-center min-h-screen max-w-[1360px] w-full pb-20">
@@ -28,7 +28,7 @@ const page = () => {
         set_searchTodo={set_searchTodo}
       />
 
-      <ul className="flex flex-wrap gap-10 justify-center">
+      <ul className="flex flex-wrap gap-10 justify-center max-w-screen">
         {searchTodo.trim() ? 
           filteredTodos?.map((item: TypedTodo) => {
             return(

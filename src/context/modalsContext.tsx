@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode, createContext, useContext, useState } from "react";
+import React, { ReactNode, createContext, useContext, useState } from "react";
 
 interface IProps {
   children: ReactNode
@@ -27,6 +27,13 @@ interface InterfacedModalContext {
   set_modalSettingsDeleteStatus: React.Dispatch<React.SetStateAction<boolean>>
   modalSettingsEditShortcuts: boolean
   set_modalSettingsEditShortcuts: React.Dispatch<React.SetStateAction<boolean>>
+
+  modalCreateNote: boolean
+  set_modalCreateNote: React.Dispatch<React.SetStateAction<boolean>>
+  modalEditNote: boolean
+  set_modalEditNote: React.Dispatch<React.SetStateAction<boolean>>
+  modalDeleteNote: boolean
+  set_modalDeleteNote: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ModalContext = createContext({} as InterfacedModalContext)
@@ -44,7 +51,9 @@ export const ModalContextProvider = ( { children }:IProps ) => {
   const [modalSettingsEditInfolabels, set_modalSettingsEditInfolabels] = useState<boolean>(false)
   const [modalSettingsEditShortcuts, set_modalSettingsEditShortcuts] = useState<boolean>(false)
 
-
+  const [modalCreateNote, set_modalCreateNote] = useState<boolean>(false)
+  const [modalEditNote, set_modalEditNote] = useState<boolean>(false)
+  const [modalDeleteNote, set_modalDeleteNote] = useState<boolean>(false)
 
   return(
     <ModalContext.Provider value={{
@@ -57,7 +66,10 @@ export const ModalContextProvider = ( { children }:IProps ) => {
       modalSettingsDeleteStatus, set_modalSettingsDeleteStatus,
       modalSettingsEditMarkers, set_modalSettingsEditMarkers,
       modalSettingsEditInfolabels, set_modalSettingsEditInfolabels,
-      modalSettingsEditShortcuts, set_modalSettingsEditShortcuts
+      modalSettingsEditShortcuts, set_modalSettingsEditShortcuts,
+      modalCreateNote, set_modalCreateNote,
+      modalEditNote, set_modalEditNote,
+      modalDeleteNote, set_modalDeleteNote
     }}>
       {children}
     </ModalContext.Provider>

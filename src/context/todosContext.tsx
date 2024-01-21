@@ -31,7 +31,6 @@ interface IProps {
 export const TodosContextProvider = ( { children }:IProps ) => {
   const { userData, userTheme, set_isLoading } = globalContext()
   const [todosListData, set_todosListData] = useState<TodoListDataInterface>({ status: 'idle', data: []})
-  const [watcher, set_watcher] = useState<number>(0)
 
   useEffect(() => {
     if(userData?.uid && todosListData.status === 'idle'){

@@ -5,6 +5,7 @@ import { GlobalContextProvider } from '@/context/global'
 import Loading from '@/components/Loading/loading'
 import { TodosContextProvider } from '@/context/todosContext'
 import { ModalContextProvider } from '@/context/modalsContext'
+import { NotesContextProvider } from '@/context/notesContext'
 
 export const metadata = {
   title: 'Clockboard App',
@@ -21,12 +22,14 @@ export default function RootLayout({
       <GlobalContextProvider>
         <ModalContextProvider>
           <TodosContextProvider>
-            <body className="bg-gray-800 relative flex flex-col items-center select-none"
-            >
-              <Loading/>
-              <Menubar/>
-              {children}
-            </body>
+            <NotesContextProvider>
+              <body className="bg-gray-800 relative flex flex-col items-center select-none max-w-screen overflow-x-hidden"
+              >
+                <Loading/>
+                <Menubar/>
+                {children}
+              </body>
+            </NotesContextProvider>
           </TodosContextProvider>
         </ModalContextProvider>
       </GlobalContextProvider>

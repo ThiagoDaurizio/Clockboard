@@ -127,7 +127,7 @@ const ModalCreateTodo = () => {
           onClick={() => set_modalCreateTodo(false)}
           className="bg-violet-600 text-gray-200 text-lg p-1 px-2 min-w-[100px] rounded transition-colors duration-300 hover:bg-violet-700"
         >
-          Cancelar
+          Cancel
         </button>
       </div>
     </>

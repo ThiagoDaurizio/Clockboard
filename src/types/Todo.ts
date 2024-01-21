@@ -11,7 +11,7 @@ export type TypedTodo = {
   markers: Marker[]
   statusId: string
   uid: string
-  createdAt: any
+  createAt: any
 }
 
 export type TypedTodoDTO = {

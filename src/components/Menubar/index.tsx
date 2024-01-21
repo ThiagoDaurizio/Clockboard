@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
 const menuItems = [
   {menuUrl: '/', menuLabel: 'HOME'},
   {menuUrl: '/todos', menuLabel: 'TODOS'},
-  {menuUrl: '/', menuLabel: 'NOTES'},
+  {menuUrl: '/notes', menuLabel: 'NOTES'},
   {menuUrl: '/', menuLabel: 'PROJECTS'},
   {menuUrl: '/', menuLabel: 'DOCS'},
   {menuUrl: '/', menuLabel: 'LINKS'},
