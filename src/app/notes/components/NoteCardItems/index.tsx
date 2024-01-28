@@ -42,18 +42,18 @@ const NoteCardItems = ( { note, noteItem, set_actualNote, set_actualNoteItem }:I
       className="flex relative border border-transparent border-b-gray-700/80 py-1"
     >
       <div
-        className="flex items-center w-full"
+        className="relative flex items-center w-full"
       >
         <button 
           onClick={() => set_toolsOpened(!toolsOpened)}
-          className="bg-violet-600 rounded-full p-1 text-gray-200 border border-gray-300 transition-all duration-300 hover:bg-violet-700 hover:border-gray-200 text-sm w-6 h-6 flex justify-center items-center"
+          className="bg-violet-600 rounded-full p-1 text-gray-200 border border-gray-200 transition-all duration-300 hover:bg-violet-700 hover:border-gray-100 text-xl w-6 h-6 flex justify-center items-center"
           style={{transform: !toolsOpened ? 'rotate(0deg)' : 'rotate(315deg)'}}
         >
           <IconsApp.add/>
         </button>
 
         <div
-          className="flex gap-1 ml-2 overflow-hidden transition-all duration-500"
+          className="relative flex gap-1 ml-2 overflow-hidden transition-all duration-500"
           style={{minWidth: toolsOpened ? '80px' : '0', width: toolsOpened ? '80px' : '0', opacity: toolsOpened ? '100' : '0'}}
         >
           <button
@@ -86,18 +86,27 @@ const NoteCardItems = ( { note, noteItem, set_actualNote, set_actualNoteItem }:I
         <p
           className="ml-1 flex items-center flex-1"
         >
+          {!noteItem?.key.trim() &&(
+            <span
+              className="text-gray-400 text-xl font-extrabold"
+            >
+              ·
+            </span>
+            ) 
+          }
           {noteItem?.key?.trim() &&(
             <span
               onClick={() => navigator.clipboard.writeText(noteItem.key)}
               className="text-gray-400 transition-colors duration-300 p-1 py-0 rounded-md cursor-pointer hover:bg-gray-700/30 active:text-green-400"
-            >
-              {noteItem.key}{noteItem?.key?.trim() ? ':' : ''}
+            > 
+              {noteItem.key}
+              {noteItem?.key?.trim() ? ':' : ''}
             </span>
           )}
           {noteItem?.value?.trim() &&(
             <span
               onClick={() => navigator.clipboard.writeText(noteItem.value)}
-              className={`flex-1 transition-colors duration-300 p-1 py-0 rounded-md cursor-pointer hover:bg-gray-700/30 border border-transparent ${noteItem.isHided ? 'text-transparent' : 'text-gray-300'} ${noteItem.isHided ? 'active:bg-green-300/30' : 'active:text-green-400'}`}
+              className={`flex-1 transition-colors duration-300 p-1 py-0 rounded-md cursor-pointer hover:bg-gray-700/30 border border-transparent ${noteItem.isHided ? 'text-transparent' : 'text-gray-300'} ${noteItem.isHided ? 'active:bg-violet-300/10' : 'active:text-green-400'}`}
               style={{textShadow: noteItem?.isHided ? '0 0 7px rgba(255,255,255,0.5)' : ''}}
             >
               {noteItem.value}

@@ -52,54 +52,63 @@ const NoteCard = ( { note, set_actualNote, set_actualNoteItem }:IProps ) => {
         {note.title}
       </p>
 
-      <div
-        className="flex justify-evenly items-center"
+      <div 
+        className="flex flex-col items-center"
       >
-        <button
-          onClick={handleEditNote}
-          className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-700 hover:text-green-400"
+        <div
+          className="flex justify-evenly items-center w-full"
         >
-          <IconsApp.edit/>
-          <CompTooltip label='Edit'/>
-        </button>
-        <button
-          onClick={handleDeleteNote}
-          className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-700  hover:border-rose-600 hover:text-rose-500"
-        >
-          <IconsApp.delete/>
-          <CompTooltip label='Delete'/>
-        </button>
-
-        <button 
-          onClick={handleCreateNoteItem}
-          className="flex justify-center items-center bg-violet-600 p-1 px-2 gap-1 rounded-full border-2 border-gray-300 text-lg text-gray-200 font-semibold transition-colors duration-300 hover:bg-violet-700"
-        >
-          <IconsApp.createNote/>
-          <span 
-            className="text-sm"
+          <button
+            onClick={handleEditNote}
+            className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-700 hover:text-green-400"
           >
-            Create Item
-          </span>
-        </button>
+            <IconsApp.edit/>
+            <CompTooltip label='Edit'/>
+          </button>
+          <button
+            onClick={handleDeleteNote}
+            className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-gray-700  hover:border-rose-600 hover:text-rose-500"
+          >
+            <IconsApp.delete/>
+            <CompTooltip label='Delete'/>
+          </button>
 
-        <button
-          onClick={handleBringNoteToUp} 
-          className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-violet-700"
+          <button 
+            onClick={handleCreateNoteItem}
+            className="flex justify-center items-center bg-violet-600 p-1 px-5 gap-1 rounded-full border-2 border-gray-300 text-lg text-gray-200 font-semibold transition-colors duration-300 hover:bg-violet-700"
+          >
+            <span 
+              className="text-sm"
+            >
+              Create Item
+            </span>
+          </button>
+
+          <button
+            onClick={handleBringNoteToUp} 
+            className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-violet-700"
+          >
+            <IconsApp.arrowToUp/>
+            <CompTooltip label='To First'/>
+          </button>
+          <button 
+            onClick={handleHidedNoteMode} 
+            className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-violet-700"
+          >
+            {note.isHided ? 
+              <IconsApp.sightOn/>
+              :
+              <IconsApp.sightOff/>
+            }
+            <CompTooltip label={note.isHided ? 'Unhide Items' : 'Hide Items'}/>
+          </button>
+        </div>
+
+        <p
+          className="text-violet-500 text-xs font-medium tracking-wider px-2 border border-gray-300 rounded-b-md bg-gray-800/50"
         >
-          <IconsApp.arrowToUp/>
-          <CompTooltip label='To First'/>
-        </button>
-        <button 
-          onClick={handleHidedNoteMode} 
-          className="relative group w-6 h-6 flex justify-center items-center bg-violet-600 p-1 rounded-full border-2 border-gray-300 text-base text-gray-200 font-semibold transition-colors duration-300 hover:bg-violet-700"
-        >
-          {note.isHided ? 
-            <IconsApp.sightOn/>
-            :
-            <IconsApp.sightOff/>
-          }
-          <CompTooltip label={note.isHided ? 'Unhide Items' : 'Hide Items'}/>
-        </button>
+          {note.items.length} {note.items.length > 1 ? 'items' : 'item'}
+        </p>
       </div>
 
       {!note.isHided && note.items.length > 0 &&(
