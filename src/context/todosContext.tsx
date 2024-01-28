@@ -18,7 +18,6 @@ interface TodosContextInterface {
   callDeleteTodo: (todoId: string) => void
   callCreateTodo: (todoBody: TypedTodoDTO) => void
   callBringTodoToUp: (todoId: string) => void
-  // set_todosListData: React.Dispatch<React.SetStateAction<TodoListData>>
 }
 
 const TodosContext = createContext({} as TodosContextInterface)

@@ -1,9 +1,9 @@
 'use client'
 
-import { TypedNote } from "@/types/Notes"
+import { TypedNote, TypedNoteDTO, TypedNoteItem, TypedNoteItemDTO } from "@/types/Notes"
 import { ReactNode, createContext, useContext, useEffect, useState } from "react"
 import { globalContext } from "./global"
-import { getNotesByUserId } from "@/api/notes"
+import { addNoteItem, bringNoteItemToUp, bringNoteToUp, changeNoteHided, changeNoteItemHided, createNote, deleteNoteById, deleteNoteItemByIds, editNote, editNoteItem, getNotesByUserId } from "@/api/notes"
 
 interface NotesListDataInterface {
   status: 'idle' | 'pedding' | 'completed' | 'failed'
@@ -13,6 +13,16 @@ interface NotesListDataInterface {
 interface NotesContextInterface {
   notesListData: NotesListDataInterface
   getUserNotes: () => void
+  callCreateNote: (noteBody: TypedNoteDTO) => void
+  callUpdateNoteInfos: (noteId: string, newBody: TypedNote) => void
+  callUpdateNoteHided: (noteId: string, newHidedMode: boolean) => void
+  callBringNoteToUp: (noteId: string) => void
+  callDeleteNote: (noteId: string) => void
+  callCreateNoteItem: (noteId: string, itemBody: TypedNoteItemDTO) => void
+  callUpdateNoteItemInfos: (noteId: string, itemId: string, newBody: TypedNoteItem) => void
+  callUpdateNoteItemHided: (noteId: string, itemId: string, newHidedMode: boolean) => void
+  callBringNoteItemToUp: (noteId: string, itemId: string) => void
+  callDeleteItemNote: (noteId: string, itemId: string) => void
 }
 
 const NotesContext = createContext({} as NotesContextInterface )
@@ -46,10 +56,71 @@ export const NotesContextProvider = ( { children }:IProps ) => {
     return
   }
 
+  const callCreateNote = async (noteBody: TypedNoteDTO) => {
+    await createNote(noteBody)
+    await getUserNotes()
+  }
+
+  const callUpdateNoteInfos = async (noteId: string, newBody: TypedNote) => {
+    await editNote(noteId, newBody)
+    await getUserNotes()
+  }
+
+  const callUpdateNoteHided = async (noteId: string, newHidedMode: boolean) => {
+    await changeNoteHided(noteId, newHidedMode)
+    await getUserNotes()
+  }
+
+  const callBringNoteToUp = async (noteId: string) => {
+    await bringNoteToUp(noteId)
+    await getUserNotes()
+  }
+
+  const callDeleteNote = async (noteId: string) => {
+    await deleteNoteById(noteId)
+    await getUserNotes()
+  }
+
+
+  const callCreateNoteItem = async (noteId: string, itemBody: TypedNoteItemDTO) => {
+    await addNoteItem(noteId, itemBody)
+    await getUserNotes()
+  }
+
+  const callUpdateNoteItemInfos = async (noteId: string, itemId: string, newBody: TypedNoteItem) => {
+    await editNoteItem(noteId, itemId, newBody)
+    await getUserNotes()
+  }
+
+  const callUpdateNoteItemHided = async (noteId: string, itemId: string, newHidedMode: boolean) => {
+    await changeNoteItemHided(noteId, itemId, newHidedMode)
+    await getUserNotes()
+  }
+
+  const callBringNoteItemToUp = async (noteId: string, itemId: string)  => {
+    await bringNoteItemToUp(noteId, itemId)
+    await getUserNotes()
+  }
+
+  const callDeleteItemNote = async (noteId: string, itemId: string) => {
+    await deleteNoteItemByIds(noteId, itemId)
+    await getUserNotes()
+  }
+
   return(
     <NotesContext.Provider value={{
       notesListData,
-      getUserNotes
+      getUserNotes,
+      callCreateNote,
+      callUpdateNoteInfos,
+      callUpdateNoteHided,
+      callBringNoteToUp,
+      callDeleteNote,
+      callCreateNoteItem,
+      callUpdateNoteItemInfos,
+      callUpdateNoteItemHided,
+      callBringNoteItemToUp,
+      callDeleteItemNote
     }}>
       {children}
     </NotesContext.Provider>

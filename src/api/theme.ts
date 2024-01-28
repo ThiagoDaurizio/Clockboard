@@ -24,7 +24,7 @@ export const getThemeByUserId = async (userId: string) => {
 
 export const createStatus = async (themeId: string, body: TypedStatus) => {
   try{
-    const documentRef = doc(database, 'themes', themeId);
+    const documentRef = doc(database, 'themes', themeId)
     await updateDoc(documentRef, {
       status: arrayUnion(body),
     })

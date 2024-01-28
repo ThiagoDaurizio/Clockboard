@@ -16,7 +16,7 @@ const NoteHeader = ( { searchNote, set_searchNote }:IProps ) => {
       onClick={() => set_modalCreateNote(true)}
       className="bg-violet-600 p-12 py-1 rounded-t-lg border border-gray-400  border-b-transparent text-lg text-gray-200 font-semibold transition-colors duration-300 hover:bg-violet-700"
     >
-      CREATE TODO
+      CREATE NOTE
     </button>
     <input 
       value={searchNote}

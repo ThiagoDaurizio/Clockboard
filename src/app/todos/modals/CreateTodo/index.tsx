@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 
 const ModalCreateTodo = () => {
   const { userTheme, userData, set_isLoading } = globalContext()
-  const { callCreateTodo} = todosContext()
+  const { callCreateTodo } = todosContext()
   const { set_modalCreateTodo } = modalContext()
 
   const [todoTitle, set_todoTitle] = useState<string>('')

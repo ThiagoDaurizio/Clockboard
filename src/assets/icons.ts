@@ -24,7 +24,10 @@ import {
   IoChatboxEllipsesOutline as IconChat,
   IoGameControllerOutline  as IconPlay,
   IoLogoElectron as IconReact,
-  IoArrowUp as IconArrowToUp
+  IoArrowUp as IconArrowToUp,
+  IoEyeOutline as IconSightOn,
+  IoEyeOffOutline as IconSightOff,
+  IoFileTrayStackedOutline  as IconCreateNote
 } from "react-icons/io5";
 
 
@@ -40,7 +43,10 @@ export const IconsApp = {
   accept: IconAccept,
   decline: IconDecline,
   search: IconSearch,
-  arrowToUp: IconArrowToUp
+  arrowToUp: IconArrowToUp,
+  sightOn: IconSightOn,
+  sightOff: IconSightOff,
+  createNote: IconCreateNote
 }
 
 export const IconsMenu = {

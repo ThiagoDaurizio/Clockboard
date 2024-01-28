@@ -34,6 +34,12 @@ interface InterfacedModalContext {
   set_modalEditNote: React.Dispatch<React.SetStateAction<boolean>>
   modalDeleteNote: boolean
   set_modalDeleteNote: React.Dispatch<React.SetStateAction<boolean>>
+  modalCreateNoteItem: boolean
+  set_modalCreateNoteItem: React.Dispatch<React.SetStateAction<boolean>>
+  modalEditNoteItem: boolean
+  set_modalEditNoteItem: React.Dispatch<React.SetStateAction<boolean>>
+  modalDeleteNoteItem: boolean
+  set_modalDeleteNoteItem: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ModalContext = createContext({} as InterfacedModalContext)
@@ -54,6 +60,10 @@ export const ModalContextProvider = ( { children }:IProps ) => {
   const [modalCreateNote, set_modalCreateNote] = useState<boolean>(false)
   const [modalEditNote, set_modalEditNote] = useState<boolean>(false)
   const [modalDeleteNote, set_modalDeleteNote] = useState<boolean>(false)
+  const [modalCreateNoteItem, set_modalCreateNoteItem] = useState<boolean>(false)
+  const [modalEditNoteItem, set_modalEditNoteItem] = useState<boolean>(false)
+  const [modalDeleteNoteItem, set_modalDeleteNoteItem] = useState<boolean>(false)
+
 
   return(
     <ModalContext.Provider value={{
@@ -69,7 +79,10 @@ export const ModalContextProvider = ( { children }:IProps ) => {
       modalSettingsEditShortcuts, set_modalSettingsEditShortcuts,
       modalCreateNote, set_modalCreateNote,
       modalEditNote, set_modalEditNote,
-      modalDeleteNote, set_modalDeleteNote
+      modalDeleteNote, set_modalDeleteNote,
+      modalCreateNoteItem, set_modalCreateNoteItem,
+      modalEditNoteItem, set_modalEditNoteItem,
+      modalDeleteNoteItem, set_modalDeleteNoteItem
     }}>
       {children}
     </ModalContext.Provider>
