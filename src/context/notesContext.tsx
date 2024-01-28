@@ -3,7 +3,7 @@
 import { TypedNote, TypedNoteDTO, TypedNoteItem, TypedNoteItemDTO } from "@/types/Notes"
 import { ReactNode, createContext, useContext, useEffect, useState } from "react"
 import { globalContext } from "./global"
-import { addNoteItem, bringNoteItemToUp, bringNoteToUp, changeNoteHided, changeNoteItemHided, createNote, deleteNoteById, deleteNoteItemByIds, editNote, editNoteItem, getNotesByUserId } from "@/api/notes"
+import { addNoteItem, bringNoteToUp, changeNoteHided, changeNoteItemHided, createNote, deleteNoteById, deleteNoteItemByIds, editNote, editNoteItem, getNotesByUserId } from "@/api/notes"
 
 interface NotesListDataInterface {
   status: 'idle' | 'pedding' | 'completed' | 'failed'
@@ -21,7 +21,6 @@ interface NotesContextInterface {
   callCreateNoteItem: (noteId: string, itemBody: TypedNoteItemDTO) => void
   callUpdateNoteItemInfos: (noteId: string, itemId: string, newBody: TypedNoteItem) => void
   callUpdateNoteItemHided: (noteId: string, itemId: string, newHidedMode: boolean) => void
-  callBringNoteItemToUp: (noteId: string, itemId: string) => void
   callDeleteItemNote: (noteId: string, itemId: string) => void
 }
 
@@ -97,11 +96,6 @@ export const NotesContextProvider = ( { children }:IProps ) => {
     await getUserNotes()
   }
 
-  const callBringNoteItemToUp = async (noteId: string, itemId: string)  => {
-    await bringNoteItemToUp(noteId, itemId)
-    await getUserNotes()
-  }
-
   const callDeleteItemNote = async (noteId: string, itemId: string) => {
     await deleteNoteItemByIds(noteId, itemId)
     await getUserNotes()
@@ -119,7 +113,6 @@ export const NotesContextProvider = ( { children }:IProps ) => {
       callCreateNoteItem,
       callUpdateNoteItemInfos,
       callUpdateNoteItemHided,
-      callBringNoteItemToUp,
       callDeleteItemNote
     }}>
       {children}

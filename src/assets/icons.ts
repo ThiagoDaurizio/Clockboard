@@ -27,7 +27,9 @@ import {
   IoArrowUp as IconArrowToUp,
   IoEyeOutline as IconSightOn,
   IoEyeOffOutline as IconSightOff,
-  IoFileTrayStackedOutline  as IconCreateNote
+  IoFileTrayStackedOutline  as IconCreateNote,
+  IoMenu as IconListArray,
+  IoList as IconListObject
 } from "react-icons/io5";
 
 
@@ -59,5 +61,7 @@ export const IconsMenu = {
   settings: IconSettings,
   chat: IconChat,
   play: IconPlay,
-  react: IconReact
+  react: IconReact,
+  listArray: IconListArray,
+  listObject: IconListObject
 }

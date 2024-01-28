@@ -46,7 +46,7 @@ const ModalEditNoteItem = ( { actualNote, actualNoteItem }:IProps ) => {
         className="w-full"
       >
         <span className="text-green-400 text-sm mb-1 pl-1">
-          Key
+          Item Category
         </span>
         <CompInputText text={noteItemKey} set_text={set_noteItemKey} width={'100%'} />
       </label>
@@ -54,7 +54,7 @@ const ModalEditNoteItem = ( { actualNote, actualNoteItem }:IProps ) => {
         className="w-full"
       >
         <span className="text-green-400 text-sm mb-1 pl-1">
-          Value
+          Item Name
         </span>
         <CompInputText text={noteItemValue} set_text={set_noteItemValue} width={'100%'} />
       </label>

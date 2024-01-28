@@ -1,4 +1,5 @@
 'use client'
+import { IconsApp, IconsMenu } from '@/assets/icons'
 import CompInputText from '@/components/InputText'
 import CompInputToggle from '@/components/InputToggle'
 import { globalContext } from '@/context/global'
@@ -16,11 +17,11 @@ const ModalCreateNoteItem = ( { actualNote }:IProps ) => {
   const  { callCreateNoteItem, callUpdateNoteHided } = notesContext()
   const { modalCreateNoteItem, set_modalCreateNoteItem } = modalContext()
 
-  const [noteStyle, set_noteStyle] = useState<boolean>(false)
-
+  
   const [noteKey, set_noteKey] = useState<string>('')
   const [noteValue, set_noteValue] = useState<string>('')
   const [noteIsHided, set_noteIsHided] = useState<boolean>(false)
+  const [noteStyle, set_noteStyle] = useState<boolean>(false)
 
   useEffect(() => {
     if(modalCreateNoteItem){
@@ -60,37 +61,85 @@ const ModalCreateNoteItem = ( { actualNote }:IProps ) => {
   const resetForm = () => {
     set_noteKey('')
     set_noteValue('')
+    set_noteIsHided(false)
   }
 
   return (
     <>
-      <label 
-        className="w-full"
+      <div
+        className="flex justify-between gap-8"
       >
-        <span className="text-green-400 text-sm mb-1 pl-1">
-          List type
-        </span>
-        <div
-          className="flex justify-center items-center gap-2 text-gray-400 text-xs"
+        <label 
+          className="w-full"
         >
-        <p
-          className="flex flex-col items-center justify-center"
+          <span className="text-green-400 text-sm mb-1 text-center block">
+            List type
+          </span>
+          <div
+            className="flex justify-center items-center gap-2 text-gray-400 text-xl"
+          >
+          <p
+            className="flex flex-col items-center justify-center"
+          >
+            <span 
+              className={`${noteStyle ? 'text-gray-500' : 'text-gray-200'}`}
+            >
+              <IconsMenu.listArray/>
+            </span>
+          </p>
+          <CompInputToggle 
+            toggle={noteStyle}
+            set_toggle={set_noteStyle}
+            colored={false}
+          />
+          <p
+            className="flex flex-col items-center justify-center"
+          >
+            <span 
+              className={`${noteStyle ? 'text-gray-200' : 'text-gray-500'}`}
+            >
+              <IconsMenu.listObject/>
+            </span>
+          </p>
+        </div>
+        </label>
+
+        <label 
+          className="w-full flex flex-col transition-transform duration-500"
         >
-          <span>Listed</span> 
-          <span>basic</span>
-        </p>
-        <CompInputToggle 
-          toggle={noteStyle}
-          set_toggle={set_noteStyle}
-        />
-        <p
-          className="flex flex-col items-center justify-center"
-        >
-          <span>Listed</span> 
-          <span>categories</span>
-        </p>
+          <span className="text-green-400 text-sm mb-1 text-center">
+            Start hided
+          </span>
+          <div
+            className="flex justify-center items-center gap-2 text-xl"
+          >
+          <p
+            className="flex flex-col items-center justify-center"
+          >
+            <span 
+              className={`${noteIsHided ? 'text-gray-500' : 'text-gray-200'}`}
+            >
+              <IconsApp.sightOn/>
+            </span>
+          </p>
+          <CompInputToggle 
+            toggle={noteIsHided}
+            set_toggle={set_noteIsHided}
+            colored={false}
+          />
+          <p
+            className="flex flex-col items-center justify-center"
+          >
+            <span 
+              className={`${noteIsHided ? 'text-gray-200' : 'text-gray-500'}`}
+            >
+              <IconsApp.sightOff/>
+            </span>
+          </p>
+        </div>
+        </label>
       </div>
-      </label>
+
 
       <label 
         className="w-full transition-all duration-500"
@@ -112,22 +161,7 @@ const ModalCreateNoteItem = ( { actualNote }:IProps ) => {
         <CompInputText text={noteValue} set_text={set_noteValue} width={'100%'} />
       </label>
 
-      <label 
-        className="w-full flex flex-col items-center transition-transform duration-500"
-        style={{transform: noteStyle ? 'translateY(0px)' : 'translateY(-50px)'}}
-      >
-        <span className="text-green-400 text-sm mb-1 pl-1">
-          Start Hided?
-        </span>
-        <CompInputToggle 
-          toggle={noteIsHided}
-          set_toggle={set_noteIsHided}
-        />
-      </label>
-
-
-
-    <div 
+      <div 
         className="flex justify-between w-full mt-3"
       >
         <button

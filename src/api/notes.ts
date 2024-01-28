@@ -161,38 +161,6 @@ export const changeNoteItemHided = async (noteId: string, itemId: string, newHid
   }
 }
 
-export const bringNoteItemToUp = async (noteId: string, itemId: string) => {  
-  try {
-    const documentRef = doc(database, 'notes', noteId)
-    const documentSnapshot = await getDoc(documentRef)
-
-    
-    if(documentSnapshot.exists()){
-      const noteData = documentSnapshot.data() as TypedNote
-
-      const updatedItems = (noteData?.items || []).map((item) => {
-        if(item.id === itemId){
-          return {
-            ...item,
-            createAt: new Date()
-          }
-        } else {
-          return item
-        }
-      })
-
-      await updateDoc(documentRef, {
-        items: updatedItems
-      })
-
-      return
-    }
-  } catch (error) {
-    console.error(error)
-    throw error
-  }
-}
-
 export const deleteNoteItemByIds = async (noteId: string, itemId: string) => {
   try {
     const documentRef = doc(database, 'notes', noteId)
